@@ -116,9 +116,16 @@ public class PerformanceChecker : MonoBehaviour {
         }
 
 		if ( TestComponent ) {
-			Direct_Test();
+			DirectT_Test();
+            DirectT_Null_Test();
+            DirectsT_Test();
+            DirectsT_Null_Test();
+            DirectS_Test();
+            DirectS_Null_Test();
+            DirectsS_Test();
+            DirectsS_Null_Test();
 
-			LocalCacheVariable_Test();
+            LocalCacheVariable_Test();
 			LocalCacheProperty_Test();
 			LocalCachePropertyConv_Test();
 			LocalCachePropertyChecked_Test();
@@ -195,15 +202,71 @@ public class PerformanceChecker : MonoBehaviour {
     }*/
 
     // Test Component
-    void Direct_Test() {
-        Profiler.BeginSample("Get Component");
+    void DirectT_Test() {
+        Profiler.BeginSample("Get Component<T>");
 		for ( int i = 0; i < Tries; i++ ) {
 			_counter += GetComponent<TestComponent>().Vector.x;
 		}
         Profiler.EndSample();
 	}
 
-	void LocalCacheVariable_Test() {
+    void DirectT_Null_Test() {
+        Profiler.BeginSample("Get Component<T> Null");
+        for (int i = 0; i < Tries; i++) {
+            var item = GetComponent<Test1>();
+        }
+        Profiler.EndSample();
+    }
+
+    void DirectsT_Test() {
+        Profiler.BeginSample("Get Components<T>");
+        for (int i = 0; i < Tries; i++) {
+            _counter += GetComponents<TestComponent>()[0].Vector.x;
+        }
+        Profiler.EndSample();
+    }
+
+    void DirectsT_Null_Test() {
+        Profiler.BeginSample("Get Components<T> Null");
+        for (int i = 0; i < Tries; i++) {
+            var items = GetComponents<Test1>();
+        }
+        Profiler.EndSample();
+    }
+
+    void DirectS_Test() {
+        Profiler.BeginSample("Get Component By Type");
+        for (int i = 0; i < Tries; i++) {
+            _counter += (GetComponent(typeof(TestComponent)) as TestComponent).Vector.x;
+        }
+        Profiler.EndSample();
+    }
+
+    void DirectS_Null_Test() {
+        Profiler.BeginSample("Get Component By Type Null");
+        for (int i = 0; i < Tries; i++) {
+            var item = GetComponent(typeof(Test1)) as Test1;
+        }
+        Profiler.EndSample();
+    }
+
+    void DirectsS_Test() {
+        Profiler.BeginSample("Get Components By Type");
+        for (int i = 0; i < Tries; i++) {
+            _counter += (GetComponents(typeof(TestComponent))[0] as TestComponent).Vector.x;
+        }
+        Profiler.EndSample();
+    }
+
+    void DirectsS_Null_Test() {
+        Profiler.BeginSample("Get Components By Type Null");
+        for (int i = 0; i < Tries; i++) {
+            var items = GetComponents(typeof(Test1));
+        }
+        Profiler.EndSample();
+    }
+
+    void LocalCacheVariable_Test() {
         Profiler.BeginSample("Local Variable");
         for ( int i = 0; i < Tries; i++ ) {
 			_counter += _testVar.Vector.x;
