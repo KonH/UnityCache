@@ -3,16 +3,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class InnerCache : MonoBehaviour {
-	Dictionary<Type, Component> cache = new Dictionary<Type, Component>();
+namespace TestScripts {
+    public class InnerCache : MonoBehaviour {
+        Dictionary<Type, Component> cache = new Dictionary<Type, Component>();
 
-	public T Get<T>() where T : Component {
-		var type = typeof(T);
+        public T Get<T>() where T : Component {
+            var type = typeof(T);
 
-		if ( !cache.ContainsKey(type) ) {
-			cache.Add(type, GetComponent<T>());
-		}
+            if (!cache.ContainsKey(type)) {
+                cache.Add(type, GetComponent<T>());
+            }
 
-		return cache[type] as T;
-	}
+            return cache[type] as T;
+        }
+    }
 }

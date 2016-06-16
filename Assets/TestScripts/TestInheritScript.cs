@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestInheritScript : AttributeCacheInherit {
-    //[Cached]
-    //public Transform Trans;
+namespace TestScripts {
+    public class TestInheritScript : AttributeCacheInherit {
+        //[Cached]
+        //public Transform Trans;
 
-    [Cached]
-    public TestComponent Test;
+        [Cached]
+        public TestComponent Test;
+    }
 }

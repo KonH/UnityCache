@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Test4 : MonoBehaviour {
+namespace TestScripts {
+    public class Test4 : MonoBehaviour {
+    }
 }
