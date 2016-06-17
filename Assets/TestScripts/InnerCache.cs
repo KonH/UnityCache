@@ -9,12 +9,13 @@ namespace TestScripts {
 
         public T Get<T>() where T : Component {
             var type = typeof(T);
-
-            if (!cache.ContainsKey(type)) {
-                cache.Add(type, GetComponent<T>());
+			Component item = null;
+			if (!cache.TryGetValue(type, out item)) {
+				item = GetComponent<T>();
+				cache.Add(type, item);
             }
 
-            return cache[type] as T;
+            return item as T;
         }
     }
 }

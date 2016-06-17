@@ -8,17 +8,21 @@ namespace TestScripts {
         static Dictionary<GameObject, Transform> trans = new Dictionary<GameObject, Transform>();
 
         public static Transform GetCachedTransfom(this GameObject owner) {
-            if (!trans.ContainsKey(owner)) {
-                trans.Add(owner, owner.GetComponent<Transform>());
+			Transform item = null;
+			if (!trans.TryGetValue(owner, out item)) {
+				item = owner.GetComponent<Transform>();
+                trans.Add(owner, item);
             }
-            return trans[owner];
+            return item;
         }
 
         static Dictionary<GameObject, TestComponent> test = new Dictionary<GameObject, TestComponent>();
 
         public static TestComponent GetCachedTestComponent(this GameObject owner) {
-            if (!test.ContainsKey(owner)) {
-                test.Add(owner, owner.GetComponent<TestComponent>());
+			TestComponent item = null;
+			if (!test.TryGetValue(owner, out item)) {
+				item = owner.GetComponent<TestComponent>();
+                test.Add(owner, item);
             }
             return test[owner];
         }
@@ -28,15 +32,18 @@ namespace TestScripts {
         public static T GetCachedComponent<T>(this GameObject owner) where T : Component {
             var type = typeof(T);
 
-            if (!cache.ContainsKey(owner)) {
-                cache.Add(owner, new Dictionary<Type, Component>());
-                cache[owner].Add(type, owner.GetComponent<T>());
+			Dictionary<Type, Component> container = null;
+			if (!cache.TryGetValue(owner, out container)) {
+				container = new Dictionary<Type, Component>();
+				cache.Add(owner, container);
             }
-            if (!cache[owner].ContainsKey(type)) {
-                cache[owner].Add(type, owner.GetComponent<T>());
+			Component item = null;
+			if (!container.TryGetValue(type, out item)) {
+				item = owner.GetComponent<T>();
+				container.Add(type, item);
             }
 
-            return cache[owner][type] as T;
+            return item as T;
         }
     }
 }
