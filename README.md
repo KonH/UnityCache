@@ -26,15 +26,15 @@ Components loaded using [Cached] attribute and you do not want to call GetCompon
             Cache.CacheAll(this);
         }
 
-	void Start () {
+        void Start () {
             // Now we can use cached items
             var pos = MyTransform.position;
-	}
+        }
 	
-	void FixedUpdate () {
+        void FixedUpdate () {
             // Even hidden one
             MyRigidbody.AddForce(Vector3.forward * 10 * Time.fixedDeltaTime);
-	}
+        }
     }
   
 ### Editor Example:
