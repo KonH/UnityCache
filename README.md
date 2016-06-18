@@ -1,5 +1,5 @@
 # UnityCache
-## Version: 0.3
+## Version: 0.31
 
 Simple scripts to cache your components using attributes.
 You can do it at runtime with some performance issues and in editor without it.
@@ -26,15 +26,15 @@ Components loaded using [Cached] attribute and you do not want to call GetCompon
             Cache.CacheAll(this);
         }
 
-	      void Start () {
+	void Start () {
             // Now we can use cached items
             var pos = MyTransform.position;
-	      }
+	}
 	
-	      void Update () {
+	void FixedUpdate () {
             // Even hidden one
-            MyRigidbody.AddForce(Vector3.forward * 10 * Time.deltaTime);
-	      }
+            MyRigidbody.AddForce(Vector3.forward * 10 * Time.fixedDeltaTime);
+	}
     }
   
 ### Editor Example:
@@ -63,8 +63,10 @@ Components loaded in Editor (before application start) and saved to instance var
           var pos = MyTransform.position;
       }
 	
-      void Update () {
+      void FixedUpdate () {
           // Even hidden one
-          MyRigidbody.AddForce(Vector3.forward * 10 * Time.deltaTime);
+          MyRigidbody.AddForce(Vector3.forward * 10 * Time.fixedDeltaTime);
       }
   }
+
+LICENSE: MIT (see LICENSE.txt beside)
