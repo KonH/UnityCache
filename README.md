@@ -67,6 +67,6 @@ Components loaded in Editor (before application start) and saved to instance var
           // Even hidden one
           MyRigidbody.AddForce(Vector3.forward * 10 * Time.fixedDeltaTime);
       }
-  }
+    }
 
 LICENSE: MIT (see LICENSE.txt beside)
