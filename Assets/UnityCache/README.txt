@@ -1,5 +1,5 @@
 UnityCache
-Version: 0.31
+Version: 0.32
 
 Simple scripts to cache your components using attributes.
 You can do it at runtime with some performance issues and in editor without it.
