@@ -1,5 +1,12 @@
 # UnityCache
-## Version: 0.31
+## Version: 0.32
+
+## Release notes
+### 0.32
+1. Experimental cache component added
+2. Warning on scene build (if found uncached components) added
+
+## Overview
 
 Simple scripts to cache your components using attributes.
 You can do it at runtime with some performance issues and in editor without it.
@@ -69,4 +76,5 @@ Components loaded in Editor (before application start) and saved to instance var
       }
     }
 
-LICENSE: MIT (see LICENSE.txt beside)
+## LICENSE 
+MIT (see LICENSE.txt beside)
