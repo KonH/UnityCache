@@ -1,8 +1,8 @@
 using System;
 
 namespace TestScripts {
-    [AttributeUsage(AttributeTargets.Field)]
-    public class CachedAttribute : Attribute {
+	[AttributeUsage(AttributeTargets.Field)]
+	public class CachedAttribute : Attribute {
 
-    }
+	}
 }

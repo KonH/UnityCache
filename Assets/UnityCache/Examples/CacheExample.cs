@@ -17,12 +17,12 @@ public class CacheExample : MonoBehaviour {
 		UCache.CacheAll(this);
 	}
 
-	void Start () {
+	void Start() {
 		// Now we can use cached items
 		var pos = MyTransform.position;
 	}
-	
-	void FixedUpdate () {
+
+	void FixedUpdate() {
 		// Even hidden one
 		MyRigidbody.AddForce(Vector3.forward * 10 * Time.fixedDeltaTime);
 	}

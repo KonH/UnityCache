@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
 namespace TestScripts {
-    public class Example : MonoBehaviour {
-        Rigidbody _rigidbody;
+	public class Example : MonoBehaviour {
+		Rigidbody _rigidbody;
 
-        void Start() {
-            _rigidbody = GetComponent<Rigidbody>();
-        }
+		void Start() {
+			_rigidbody = GetComponent<Rigidbody>();
+		}
 
-        void Update() {
-            _rigidbody.AddForce(Vector3.up * Time.deltaTime);
-        }
-    }
+		void Update() {
+			_rigidbody.AddForce(Vector3.up * Time.deltaTime);
+		}
+	}
 }
