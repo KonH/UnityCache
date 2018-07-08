@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Reflection;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace TestScripts {
 	public class AttributeCacheInherit : MonoBehaviour {
@@ -18,9 +18,9 @@ namespace TestScripts {
 
 		List<FieldInfo> GetFieldsToCache(Type type) {
 			var fields = new List<FieldInfo>();
-			foreach (var field in type.GetFields()) {
-				foreach (var a in field.GetCustomAttributes(false)) {
-					if (a is CachedAttribute) {
+			foreach ( var field in type.GetFields() ) {
+				foreach ( var a in field.GetCustomAttributes(false) ) {
+					if ( a is CachedAttribute ) {
 						fields.Add(field);
 					}
 				}
@@ -30,7 +30,7 @@ namespace TestScripts {
 
 		void CacheFields(List<FieldInfo> fields) {
 			var iter = fields.GetEnumerator();
-			while (iter.MoveNext()) {
+			while ( iter.MoveNext() ) {
 				var type = iter.Current.FieldType;
 				iter.Current.SetValue(this, GetComponent(type));
 			}
@@ -43,7 +43,7 @@ namespace TestScripts {
 		void MemberLoop() {
 			GC.Collect();
 			UnityEngine.Profiling.Profiler.BeginSample("Init Member Attribute Cache by Reflection");
-			for (int i = 0; i < Tries; i++) {
+			for ( int i = 0; i < Tries; i++ ) {
 				Member();
 			}
 			UnityEngine.Profiling.Profiler.EndSample();

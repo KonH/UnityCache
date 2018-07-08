@@ -1,6 +1,6 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace TestScripts {
 	public static class ExternalCache {
@@ -8,7 +8,7 @@ namespace TestScripts {
 
 		public static Transform GetCachedTransfom(this GameObject owner) {
 			Transform item = null;
-			if (!_trans.TryGetValue(owner, out item)) {
+			if ( !_trans.TryGetValue(owner, out item) ) {
 				item = owner.GetComponent<Transform>();
 				_trans.Add(owner, item);
 			}
@@ -19,7 +19,7 @@ namespace TestScripts {
 
 		public static TestComponent GetCachedTestComponent(this GameObject owner) {
 			TestComponent item = null;
-			if (!_test.TryGetValue(owner, out item)) {
+			if ( !_test.TryGetValue(owner, out item) ) {
 				item = owner.GetComponent<TestComponent>();
 				_test.Add(owner, item);
 			}
@@ -32,12 +32,12 @@ namespace TestScripts {
 			var type = typeof(T);
 
 			Dictionary<Type, Component> container = null;
-			if (!_cache.TryGetValue(owner, out container)) {
+			if ( !_cache.TryGetValue(owner, out container) ) {
 				container = new Dictionary<Type, Component>();
 				_cache.Add(owner, container);
 			}
 			Component item = null;
-			if (!container.TryGetValue(type, out item)) {
+			if ( !container.TryGetValue(type, out item) ) {
 				item = owner.GetComponent<T>();
 				container.Add(type, item);
 			}

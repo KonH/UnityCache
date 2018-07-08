@@ -1,7 +1,7 @@
-using UnityEngine;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace UnityCache {
 	public static class UCache {
@@ -12,7 +12,7 @@ namespace UnityCache {
 		public static void CacheAll(MonoBehaviour instance) {
 			var type = instance.GetType();
 			List<FieldInfo> fields = null;
-			if (!_cachedTypes.TryGetValue(type, out fields)) {
+			if ( !_cachedTypes.TryGetValue(type, out fields) ) {
 				fields = GetFieldsToCache(type);
 				_cachedTypes[type] = fields;
 			}
@@ -21,9 +21,9 @@ namespace UnityCache {
 
 		static List<FieldInfo> GetFieldsToCache(Type type) {
 			var fields = new List<FieldInfo>();
-			foreach (var field in type.GetFields()) {
-				foreach (var a in field.GetCustomAttributes(false)) {
-					if (a is CachedAttribute) {
+			foreach ( var field in type.GetFields() ) {
+				foreach ( var a in field.GetCustomAttributes(false) ) {
+					if ( a is CachedAttribute ) {
 						fields.Add(field);
 					}
 				}
@@ -33,7 +33,7 @@ namespace UnityCache {
 
 		static void CacheFields(MonoBehaviour instance, List<FieldInfo> fields) {
 			var iter = fields.GetEnumerator();
-			while (iter.MoveNext()) {
+			while ( iter.MoveNext() ) {
 				var type = iter.Current.FieldType;
 				iter.Current.SetValue(instance, instance.GetComponent(type));
 			}

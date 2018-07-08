@@ -11,9 +11,9 @@ namespace UnityCache {
 	/// </summary>
 	/// <typeparam name="T">Any component</typeparam>
 	public class Cached<T> where T : Component {
-		GameObject _target = null;
-		bool _isCached = false;
-		T _component = null;
+		GameObject _target    = null;
+		bool       _isCached  = false;
+		T          _component = null;
 
 		public Cached(GameObject target) {
 			_target = target;
@@ -21,9 +21,9 @@ namespace UnityCache {
 
 		public T Value {
 			get {
-				if (!_isCached) {
+				if ( !_isCached ) {
 					_component = _target.GetComponent<T>();
-					_isCached = false;
+					_isCached  = false;
 				}
 				return _component;
 			}
@@ -31,8 +31,8 @@ namespace UnityCache {
 
 		public T SafeValue {
 			get {
-				if (_target) {
-					if (!_component) {
+				if ( _target ) {
+					if ( !_component ) {
 						_component = _target.GetComponent<T>();
 					}
 					return _component;

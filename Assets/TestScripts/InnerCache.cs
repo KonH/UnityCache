@@ -1,6 +1,6 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace TestScripts {
 	public class InnerCache : MonoBehaviour {
@@ -9,7 +9,7 @@ namespace TestScripts {
 		public T Get<T>() where T : Component {
 			var type = typeof(T);
 			Component item = null;
-			if (!_cache.TryGetValue(type, out item)) {
+			if ( !_cache.TryGetValue(type, out item) ) {
 				item = GetComponent<T>();
 				_cache.Add(type, item);
 			}
