@@ -1,7 +1,10 @@
 # UnityCache
-## Version: 0.32
+## Version: 0.40
 
 ## Release notes
+### 0.40
+1. Migrate to Unity 2018.1.6f1
+2. Refactoring
 ### 0.32
 1. Experimental cache component added
 2. Warning on scene build (if found uncached components) added
@@ -30,7 +33,7 @@ Components loaded using [Cached] attribute and you do not want to call GetCompon
 
         void Awake() {
             // Cache all [Cached] members
-            Cache.CacheAll(this);
+            UCache.CacheAll(this);
         }
 
         void Start () {

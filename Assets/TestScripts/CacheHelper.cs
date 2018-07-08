@@ -1,20 +1,19 @@
 using UnityEngine;
 using System;
 using System.Reflection;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace TestScripts {
     public static class CacheHelper {
-        static Dictionary<Type, List<FieldInfo>> cachedTypes = new Dictionary<Type, List<FieldInfo>>();
+        static Dictionary<Type, List<FieldInfo>> _cachedTypes = new Dictionary<Type, List<FieldInfo>>();
 
         public static void CacheAll(MonoBehaviour instance, bool internalCache = true) {
             var type = instance.GetType();
             if (internalCache) {
                 List<FieldInfo> fields = null;
-                if (!cachedTypes.TryGetValue(type, out fields)) {
+                if (!_cachedTypes.TryGetValue(type, out fields)) {
                     fields = GetFieldsToCache(type);
-                    cachedTypes[type] = fields;
+                    _cachedTypes[type] = fields;
                 }
                 CacheFields(instance, fields);
             } else {

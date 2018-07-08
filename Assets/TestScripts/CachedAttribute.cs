@@ -1,6 +1,4 @@
-using UnityEngine;
 using System;
-using System.Collections;
 
 namespace TestScripts {
     [AttributeUsage(AttributeTargets.Field)]

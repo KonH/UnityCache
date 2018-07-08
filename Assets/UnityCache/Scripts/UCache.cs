@@ -4,17 +4,17 @@ using System.Reflection;
 using System.Collections.Generic;
 
 namespace UnityCache {
-    public class Cache : MonoBehaviour {
-        static Dictionary<Type, List<FieldInfo>> cachedTypes = new Dictionary<Type, List<FieldInfo>>();
+    public static class UCache {
+        static Dictionary<Type, List<FieldInfo>> _cachedTypes = new Dictionary<Type, List<FieldInfo>>();
 
         /// <summary>Init all 'instance' members marked with [Cached] attribute using GetComponent</summary>
         /// <param name="instance">MonoBehaviour instance</param>
         public static void CacheAll(MonoBehaviour instance) {
             var type = instance.GetType();
             List<FieldInfo> fields = null;
-            if (!cachedTypes.TryGetValue(type, out fields)) {
+            if (!_cachedTypes.TryGetValue(type, out fields)) {
                 fields = GetFieldsToCache(type);
-                cachedTypes[type] = fields;
+                _cachedTypes[type] = fields;
             }
             CacheFields(instance, fields); 
         }

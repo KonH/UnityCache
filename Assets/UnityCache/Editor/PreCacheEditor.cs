@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEditor.Callbacks;
 using System;
 using System.Reflection;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace UnityCache {
@@ -51,11 +49,11 @@ namespace UnityCache {
 
 		static bool CacheFields(MonoBehaviour instance, List<FieldInfo> fields, bool force) {
 			bool cached = false;
-			UnityEditor.SerializedObject serObj = null;
+			SerializedObject serObj = null;
 			var iter = fields.GetEnumerator();
 			while (iter.MoveNext()) {
 				if( serObj == null ) {
-					serObj = new UnityEditor.SerializedObject(instance);
+					serObj = new SerializedObject(instance);
 				}
 				var type = iter.Current.FieldType;
 				var name = iter.Current.Name;

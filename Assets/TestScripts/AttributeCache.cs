@@ -1,7 +1,6 @@
 using UnityEngine;
+using UnityEngine.Profiling;
 using System;
-using System.Reflection;
-using System.Collections;
 
 namespace TestScripts {
     public class AttributeCache : MonoBehaviour {
@@ -23,29 +22,29 @@ namespace TestScripts {
 
         void DirectLoop() {
             GC.Collect();
-            UnityEngine.Profiling.Profiler.BeginSample("Init Cache Directly");
+            Profiler.BeginSample("Init Cache Directly");
             for (int i = 0; i < Tries; i++) {
                 Direct();
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void ReflectedLoop() {
             GC.Collect();
-            UnityEngine.Profiling.Profiler.BeginSample("Init Static Attribute Cache by Reflection (first time)");
+            Profiler.BeginSample("Init Static Attribute Cache by Reflection (first time)");
             for (int i = 0; i < Tries; i++) {
                 Reflected();
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void CachedLoop() {
             GC.Collect();
-            UnityEngine.Profiling.Profiler.BeginSample("Init Static Attribute Cache with known fields (next times)");
+            Profiler.BeginSample("Init Static Attribute Cache with known fields (next times)");
             for (int i = 0; i < Tries; i++) {
                 Cached();
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void Direct() {

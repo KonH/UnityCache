@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Profiling;
 using System;
-using System.Collections;
 
 namespace TestScripts {
     public class MultipleAttributeTest : MonoBehaviour {
@@ -25,29 +25,29 @@ namespace TestScripts {
 
         void DirectLoop() {
             GC.Collect();
-            UnityEngine.Profiling.Profiler.BeginSample("Init Cache Directly - 5 components");
+            Profiler.BeginSample("Init Cache Directly - 5 components");
             for (int i = 0; i < Tries; i++) {
                 Direct();
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void ReflectedLoop() {
             GC.Collect();
-            UnityEngine.Profiling.Profiler.BeginSample("Init Static Attribute Cache by Reflection (first time) - 5 components");
+            Profiler.BeginSample("Init Static Attribute Cache by Reflection (first time) - 5 components");
             for (int i = 0; i < Tries; i++) {
                 Reflected();
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void CachedLoop() {
             GC.Collect();
-            UnityEngine.Profiling.Profiler.BeginSample("Init Static Attribute Cache with known fields (next times) - 5 components");
+            Profiler.BeginSample("Init Static Attribute Cache with known fields (next times) - 5 components");
             for (int i = 0; i < Tries; i++) {
                 Cached();
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void Direct() {

@@ -1,6 +1,6 @@
 using UnityEngine;
+using UnityEngine.Profiling;
 using System;
-using System.Collections;
 
 namespace TestScripts {
     public class PerformanceChecker : MonoBehaviour {
@@ -204,139 +204,139 @@ namespace TestScripts {
 
         // Test Component
         void DirectT_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Get Component<T>");
+            Profiler.BeginSample("Get Component<T>");
             for (int i = 0; i < Tries; i++) {
                 _counter += GetComponent<TestComponent>().Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void DirectT_Null_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Get Component<T> Null");
+            Profiler.BeginSample("Get Component<T> Null");
             for (int i = 0; i < Tries; i++) {
                 var item = GetComponent<Test1>();
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void DirectsT_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Get Components<T>");
+            Profiler.BeginSample("Get Components<T>");
             for (int i = 0; i < Tries; i++) {
                 _counter += GetComponents<TestComponent>()[0].Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void DirectsT_Null_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Get Components<T> Null");
+            Profiler.BeginSample("Get Components<T> Null");
             for (int i = 0; i < Tries; i++) {
                 var items = GetComponents<Test1>();
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void DirectS_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Get Component By Type");
+            Profiler.BeginSample("Get Component By Type");
             for (int i = 0; i < Tries; i++) {
                 _counter += (GetComponent(typeof(TestComponent)) as TestComponent).Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void DirectS_Null_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Get Component By Type Null");
+            Profiler.BeginSample("Get Component By Type Null");
             for (int i = 0; i < Tries; i++) {
                 var item = GetComponent(typeof(Test1)) as Test1;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void DirectsS_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Get Components By Type");
+            Profiler.BeginSample("Get Components By Type");
             for (int i = 0; i < Tries; i++) {
                 _counter += (GetComponents(typeof(TestComponent))[0] as TestComponent).Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void DirectsS_Null_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Get Components By Type Null");
+            Profiler.BeginSample("Get Components By Type Null");
             for (int i = 0; i < Tries; i++) {
                 var items = GetComponents(typeof(Test1));
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void LocalCacheVariable_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Local Variable");
+            Profiler.BeginSample("Local Variable");
             for (int i = 0; i < Tries; i++) {
                 _counter += _testVar.Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void LocalCacheProperty_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Cached Property");
+            Profiler.BeginSample("Cached Property");
             for (int i = 0; i < Tries; i++) {
                 _counter += TestProp.Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void LocalCachePropertyConv_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Cached Property Converted");
+            Profiler.BeginSample("Cached Property Converted");
             for (int i = 0; i < Tries; i++) {
                 _counter += TestPropConv.Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void LocalCachePropertyChecked_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Cached Property Checked");
+            Profiler.BeginSample("Cached Property Checked");
             for (int i = 0; i < Tries; i++) {
                 _counter += TestPropChecked.Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void ExternalCacheSimple_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Static Extension Cache Concrete");
+            Profiler.BeginSample("Static Extension Cache Concrete");
             for (int i = 0; i < Tries; i++) {
                 _counter += gameObject.GetCachedTestComponent().Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void ExternalCacheTemplate_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Static Extension Cache<T>");
+            Profiler.BeginSample("Static Extension Cache<T>");
             for (int i = 0; i < Tries; i++) {
                 _counter += gameObject.GetCachedComponent<TestComponent>().Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void InnerCacheTemplate_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("CacheComponent Cache<T>");
+            Profiler.BeginSample("CacheComponent Cache<T>");
             for (int i = 0; i < Tries; i++) {
                 _counter += Cache.Get<TestComponent>().Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void InnerCacheAttribute_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Attribute Cache Cocrete");
+            Profiler.BeginSample("Attribute Cache Cocrete");
             for (int i = 0; i < Tries; i++) {
                 _counter += AttrCache.Test.Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
 
         void InnerCacheAttributeInherit_Test() {
-            UnityEngine.Profiling.Profiler.BeginSample("Attribute Cache Inherit");
+            Profiler.BeginSample("Attribute Cache Inherit");
             for (int i = 0; i < Tries; i++) {
                 _counter += TestInh.Test.Vector.x;
             }
-            UnityEngine.Profiling.Profiler.EndSample();
+            Profiler.EndSample();
         }
     }
 }
