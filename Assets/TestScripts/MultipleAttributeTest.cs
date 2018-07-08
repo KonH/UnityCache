@@ -25,29 +25,29 @@ namespace TestScripts {
 
         void DirectLoop() {
             GC.Collect();
-            Profiler.BeginSample("Init Cache Directly - 5 components");
+            UnityEngine.Profiling.Profiler.BeginSample("Init Cache Directly - 5 components");
             for (int i = 0; i < Tries; i++) {
                 Direct();
             }
-            Profiler.EndSample();
+            UnityEngine.Profiling.Profiler.EndSample();
         }
 
         void ReflectedLoop() {
             GC.Collect();
-            Profiler.BeginSample("Init Static Attribute Cache by Reflection (first time) - 5 components");
+            UnityEngine.Profiling.Profiler.BeginSample("Init Static Attribute Cache by Reflection (first time) - 5 components");
             for (int i = 0; i < Tries; i++) {
                 Reflected();
             }
-            Profiler.EndSample();
+            UnityEngine.Profiling.Profiler.EndSample();
         }
 
         void CachedLoop() {
             GC.Collect();
-            Profiler.BeginSample("Init Static Attribute Cache with known fields (next times) - 5 components");
+            UnityEngine.Profiling.Profiler.BeginSample("Init Static Attribute Cache with known fields (next times) - 5 components");
             for (int i = 0; i < Tries; i++) {
                 Cached();
             }
-            Profiler.EndSample();
+            UnityEngine.Profiling.Profiler.EndSample();
         }
 
         void Direct() {

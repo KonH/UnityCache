@@ -42,11 +42,11 @@ namespace TestScripts {
 
         void MemberLoop() {
             GC.Collect();
-            Profiler.BeginSample("Init Member Attribute Cache by Reflection");
+            UnityEngine.Profiling.Profiler.BeginSample("Init Member Attribute Cache by Reflection");
             for (int i = 0; i < Tries; i++) {
                 Member();
             }
-            Profiler.EndSample();
+            UnityEngine.Profiling.Profiler.EndSample();
         }
 
         void Member() {

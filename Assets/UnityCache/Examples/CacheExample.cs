@@ -14,7 +14,7 @@ public class CacheExample : MonoBehaviour {
 
 	void Awake() {
 		// Cache all [Cached] members
-		Cache.CacheAll(this);
+		UnityCache.Cache.CacheAll(this);
 	}
 
 	void Start () {
