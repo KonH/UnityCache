@@ -199,7 +199,9 @@ namespace TestScripts {
 		void DirectT_Null_Test() {
 			Profiler.BeginSample("Get Component<T> Null");
 			for ( int i = 0; i < Tries; i++ ) {
+			#pragma warning disable CS0219
 				var item = GetComponent<Test1>();
+			#pragma warning restore CS0219
 			}
 			Profiler.EndSample();
 		}
@@ -215,7 +217,9 @@ namespace TestScripts {
 		void DirectsT_Null_Test() {
 			Profiler.BeginSample("Get Components<T> Null");
 			for ( int i = 0; i < Tries; i++ ) {
+			#pragma warning disable CS0219
 				var items = GetComponents<Test1>();
+			#pragma warning restore CS0219
 			}
 			Profiler.EndSample();
 		}
@@ -231,7 +235,9 @@ namespace TestScripts {
 		void DirectS_Null_Test() {
 			Profiler.BeginSample("Get Component By Type Null");
 			for ( int i = 0; i < Tries; i++ ) {
+			#pragma warning disable CS0219
 				var item = GetComponent(typeof(Test1)) as Test1;
+			#pragma warning restore CS0219
 			}
 			Profiler.EndSample();
 		}
@@ -247,7 +253,9 @@ namespace TestScripts {
 		void DirectsS_Null_Test() {
 			Profiler.BeginSample("Get Components By Type Null");
 			for ( int i = 0; i < Tries; i++ ) {
+			#pragma warning disable CS0219
 				var items = GetComponents(typeof(Test1));
+			#pragma warning restore CS0219
 			}
 			Profiler.EndSample();
 		}
