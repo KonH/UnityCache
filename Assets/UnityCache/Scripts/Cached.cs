@@ -23,7 +23,7 @@ namespace UnityCache {
 			get {
 				if ( !_isCached ) {
 					_component = _target.GetComponent<T>();
-					_isCached  = false;
+					_isCached  = true;
 				}
 				return _component;
 			}
